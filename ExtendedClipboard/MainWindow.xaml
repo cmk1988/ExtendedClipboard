@@ -5,21 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExtendedClipboard"
         mc:Ignorable="d"
-        Title="ExtendedClipboard" Height="70" Width="500">
+        WindowStartupLocation="CenterScreen"
+        Title="ExtendedClipboard" Height="150" Width="120">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Button x:Name="a" Grid.Column="0" Command="{Binding Command}" CommandParameter="0">1</Button>
-        <Button x:Name="b" Grid.Column="1" Command="{Binding Command}" CommandParameter="1">2</Button>
-        <Button x:Name="c" Grid.Column="2" Command="{Binding Command}" CommandParameter="2">3</Button>
-        <Button x:Name="d" Grid.Column="3" Command="{Binding Command}" CommandParameter="3">4</Button>
-        <Button x:Name="e" Grid.Column="4" Command="{Binding Command}" CommandParameter="4">5</Button>
-        <Button x:Name="f" Grid.Column="5" Command="{Binding Command}" CommandParameter="5">6</Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button x:Name="a" Grid.Row="0" Command="{Binding Command}" CommandParameter="0">1</Button>
+        <Button x:Name="b" Grid.Row="1" Command="{Binding Command}" CommandParameter="1">2</Button>
+        <Button x:Name="c" Grid.Row="2" Command="{Binding Command}" CommandParameter="2">3</Button>
+        <Button x:Name="d" Grid.Row="3" Command="{Binding Command}" CommandParameter="3">4</Button>
+        <Button x:Name="e" Grid.Row="4" Command="{Binding Command}" CommandParameter="4">5</Button>
+        <Button x:Name="f" Grid.Row="5" Command="{Binding Command}" CommandParameter="5">6</Button>
     </Grid>
 </Window>
