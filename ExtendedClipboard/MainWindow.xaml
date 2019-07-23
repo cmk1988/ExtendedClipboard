@@ -13,6 +13,7 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Button x:Name="a" Grid.Column="0" Command="{Binding Command}" CommandParameter="0">1</Button>
         <Button x:Name="b" Grid.Column="1" Command="{Binding Command}" CommandParameter="1">2</Button>
