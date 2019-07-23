@@ -23,13 +23,37 @@ namespace ExtendedClipboard
         MainViewModel vm;
         public MainWindow()
         {
-            vm = new MainViewModel(col);
+            vm = new MainViewModel(col, col2);
             DataContext = vm;
             InitializeComponent();
         }
+        void col2(int i, string str)
+        {
+            switch (i)
+            {
+                case 0:
+                    a.Content = str;
+                    break;
+                case 1:
+                    b.Content = str;
+                    break;
+                case 2:
+                    c.Content = str;
+                    break;
+                case 3:
+                    d.Content = str;
+                    break;
+                case 4:
+                    e.Content = str;
+                    break;
+                case 5:
+                    f.Content = str;
+                    break;
+            }
+        }
 
-        // Less work than property changed implementation...
-        void col(int i)
+            // Less work than property changed implementation...
+        void col(int i, string str)
         {
             a.Foreground = Brushes.Black;
             b.Foreground = Brushes.Black;
@@ -40,21 +64,27 @@ namespace ExtendedClipboard
             switch (i)
             {
                 case 0:
+                    a.Content = str;
                     a.Foreground = Brushes.Red;
                     break;
                 case 1:
+                    b.Content = str;
                     b.Foreground = Brushes.Red;
                     break;
                 case 2:
+                    c.Content = str;
                     c.Foreground = Brushes.Red;
                     break;
                 case 3:
+                    d.Content = str;
                     d.Foreground = Brushes.Red;
                     break;
                 case 4:
+                    e.Content = str;
                     e.Foreground = Brushes.Red;
                     break;
                 case 5:
+                    f.Content = str;
                     f.Foreground = Brushes.Red;
                     break;
             }
