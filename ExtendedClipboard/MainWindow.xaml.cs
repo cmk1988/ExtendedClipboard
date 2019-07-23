@@ -29,6 +29,8 @@ namespace ExtendedClipboard
         }
         void col2(int i, string str)
         {
+            if (string.IsNullOrEmpty(str))
+                str = (i + 1).ToString();
             switch (i)
             {
                 case 0:
@@ -55,6 +57,8 @@ namespace ExtendedClipboard
             // Less work than property changed implementation...
         void col(int i, string str)
         {
+            if (string.IsNullOrEmpty(str))
+                str = (i + 1).ToString();
             a.Foreground = Brushes.Black;
             b.Foreground = Brushes.Black;
             c.Foreground = Brushes.Black;

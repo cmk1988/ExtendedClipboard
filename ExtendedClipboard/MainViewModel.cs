@@ -7,6 +7,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
+using System.IO;
+using System.Collections.Specialized;
 
 namespace ExtendedClipboard
 {
@@ -27,12 +29,35 @@ namespace ExtendedClipboard
         public static event EventHandler ClipboardUpdate;
         protected override void WndProc(ref Message m)
         {
-            if (m.Msg == NativeMethods.WM_CLIPBOARDUPDATE)
+            try
             {
-                s[i] = System.Windows.Clipboard.GetText();
-                se(i, s[i]);
+
+                if (m.Msg == NativeMethods.WM_CLIPBOARDUPDATE)
+                {
+                    if (System.Windows.Clipboard.ContainsAudio())
+                        streams[i] = System.Windows.Clipboard.GetAudioStream();
+                    else
+                        streams[i] = null;
+                    if (System.Windows.Clipboard.ContainsFileDropList())
+                        drop[i] = System.Windows.Clipboard.GetFileDropList();
+                    else
+                        drop[i] = null;
+                    if (System.Windows.Clipboard.ContainsImage())
+                        img[i] = System.Windows.Clipboard.GetImage();
+                    else
+                        img[i] = null;
+                    if (System.Windows.Clipboard.ContainsText())
+                        s[i] = System.Windows.Clipboard.GetText();
+                    else
+                        s[i] = null;
+                    se(i, s[i]);
+                }
+                base.WndProc(ref m);
             }
-            base.WndProc(ref m);
+            catch
+            {
+
+            }
         }
 
         Action<int, string> act;
@@ -50,13 +75,46 @@ namespace ExtendedClipboard
 
         int i = 0;
         string[] s = new string[6];
+        Stream[] streams = new Stream[6];
+        StringCollection[] drop = new StringCollection[6];
+        BitmapSource[] img = new BitmapSource[6];
 
         public void Com(string str)
         {
-            s[i] = System.Windows.Clipboard.GetText();
-            i = int.Parse(str);
-            System.Windows.Clipboard.SetText(s[i] ?? "");
-            act(i, s[i]);
+            try
+            {
+                if (System.Windows.Clipboard.ContainsAudio())
+                    streams[i] = System.Windows.Clipboard.GetAudioStream();
+                else
+                    streams[i] = null;
+                if (System.Windows.Clipboard.ContainsFileDropList())
+                    drop[i] = System.Windows.Clipboard.GetFileDropList();
+                else
+                    drop[i] = null;
+                if (System.Windows.Clipboard.ContainsImage())
+                    img[i] = System.Windows.Clipboard.GetImage();
+                else
+                    img[i] = null;
+                if (System.Windows.Clipboard.ContainsText())
+                    s[i] = System.Windows.Clipboard.GetText();
+                else
+                    s[i] = null;
+                i = int.Parse(str);
+
+                if (streams[i] != null)
+                    System.Windows.Clipboard.SetAudio(streams[i]);
+                if (drop[i] != null)
+                    System.Windows.Clipboard.SetFileDropList(drop[i]);
+                if (img[i] != null)
+                    System.Windows.Clipboard.SetImage(img[i]);
+                if (!string.IsNullOrEmpty(s[i]))
+                    System.Windows.Clipboard.SetText(s[i]);
+                act(i, s[i]);
+            }
+            catch
+            {
+
+            }
         }
 
         Command command;
